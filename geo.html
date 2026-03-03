@@ -2123,15 +2123,15 @@
 
         if (response.ok) {
           const data = await response.json();
-          // Read real count and offset it to match your 1200+ fallback baseline
+          // Read true count from GoatCounter
           const realCount = parseInt(data.count.replace(/,/g, '') || '0', 10);
-          countEl.textContent = (realCount >= 1200 ? realCount : realCount + 1200).toLocaleString() + "+";
+          countEl.textContent = realCount.toLocaleString();
         } else {
-          countEl.textContent = "1,200+"; // Fallback if API fails
+          countEl.textContent = "0"; // Fallback if API fails
         }
       } catch (e) {
         console.warn("Visitor count unavailable, using fallback.");
-        countEl.textContent = "1,200+";
+        countEl.textContent = "0";
       }
     }
 
