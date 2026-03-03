@@ -2118,8 +2118,9 @@
       yearTextEl.textContent = `from 1 January ${currentYear} till 31 December ${currentYear}`;
 
       try {
-        // Fetch TOTAL site visits rather than a hardcoded path to ensure correct data retrieval
-        const response = await fetch(`https://geohtml.goatcounter.com/counter/TOTAL.json`);
+        // Fetch path specific stats using the EXACT string stored in GoatCounter
+        const targetPath = '/05Project/geo.html';
+        const response = await fetch(`https://geohtml.goatcounter.com/counter/${encodeURIComponent(targetPath)}.json`);
 
         if (response.ok) {
           const data = await response.json();
